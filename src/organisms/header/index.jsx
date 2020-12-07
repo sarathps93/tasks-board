@@ -74,7 +74,8 @@ const Header = () => {
                 <ChartContainer >
                     <PieChart />
                 </ChartContainer>
-            </FlexContainer>         
+            </FlexContainer>
+            <hr />     
         </>
     )
 };

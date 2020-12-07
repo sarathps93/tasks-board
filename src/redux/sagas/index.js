@@ -34,17 +34,16 @@ export function* updateBasicDetails({ payload }) {
 }
 
 export function* addUpdateStickyNotes(getState, { payload }) {
-    const { type, text, priority } = payload;
+    const { type, text, priority, id } = payload;
     try {
        const state = yield getState();
-       let id;
-       if(state.stickyNotes.length) {
-           id = state.stickyNotes[state.stickyNotes.length - 1].id + 1;
-       } else {
-           id = 1;
+       let _id = id;
+       if(!_id) {
+            if(state.stickyNotes.length) _id = state.stickyNotes[state.stickyNotes.length - 1].id + 1;
+            else _id = 1;
        }
        const stickyDetails = {
-           id,
+           id: _id,
            priority,
            text
        }
@@ -52,14 +51,15 @@ export function* addUpdateStickyNotes(getState, { payload }) {
        if(type === 'add') {
            updatedStickies.push(stickyDetails);
        } else if(type === 'delete') {
-            const indexToRemove = updatedStickies.find(sticky => sticky.id === id);
+            const indexToRemove = updatedStickies.find(sticky => sticky.id === Number(id));
             if(indexToRemove > -1) {
                 updatedStickies.splice(indexToRemove, 1);
             }
        } else if(type === 'update') {
-            const indexToUpdate = updatedStickies.find(sticky => sticky.id === id);
-            updatedStickies[indexToUpdate].priority = priority;
-            updatedStickies[indexToUpdate].text = text;
+            const indexToUpdate = updatedStickies.findIndex(sticky => sticky.id === Number(id));
+            if (indexToUpdate > -1) {
+                updatedStickies[indexToUpdate].text = text;
+            }
        }
         yield set(constants.STICKY_NOTES, updatedStickies);
         yield put(actions.updateStickyNotes(updatedStickies));

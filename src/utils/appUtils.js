@@ -19,23 +19,10 @@ export const applyPortalStyles = (el) => {
     }
 }
 
-export const createMarkup = (string) => ({ __html: string });
-
-export const age = (() => {
-    const currentDate = new Date();
-    const birthday = new Date('05/31/1993');
-    const diffTime = Math.abs(birthday - currentDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return Math.floor(diffDays / 365);
-})();
-
-export const experience = (() => {
-    const currentDate = new Date();
-    const joiningDate = new Date('12/08/2014');
-    const diffTime = Math.abs(joiningDate - currentDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const years = Math.floor(diffDays / 365);
-    let months = 12 - ((joiningDate.getMonth() + 1) - (currentDate.getMonth() + 1));
-    if(months === 0) months = 0;
-    return `${years}.${months}`;
-})();
+export const debounce = (func, delay = 1000) => { 
+    let debounceTimer 
+    return (...args) => { 
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(null, args), delay);
+    } 
+}  

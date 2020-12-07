@@ -1,16 +1,17 @@
 import styled from 'styled-components';
-import { verticalAlign } from '../../../styles/common';
+import { verticalAlign, Card } from '../../../styles/common';
 
 export const Container = styled.div`
     width: 100%;
-    margin-top: 290px;
+    max-height: 50vh;
 `;
 
 export const TaskBoard = styled.div`
     display: flex;
     justify-content: space-between;
-    min-height: 500px;
+    height: 500px;
     margin-top: 24px;
+    overflow: hidden;
 `;
 
 export const TaskSection = styled.section`
@@ -48,9 +49,34 @@ export const StickyPriority = styled.div`
     }
 `;
 
+export const ColoredLine = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+`;
+
 export const PriorityCircle = styled(Circle)`
     width: 12px;
     height: 12px;
     margin-right: 6px;
     background-color: ${props => `var(--${props.priority.toLowerCase()}-priority)`};
+`;
+
+export const StickyCards = styled(Card)`
+    background-color: ${props => props.priority && `var(--${props.priority.toLowerCase()}-priority)`};
+    color: ${props => props.priority === 'High' && 'white'};
+    min-height: 80px;
+    max-height: 200px;
+    overflow: scroll;
+    margin: 18px 0;
+`;
+
+export const ScrollableDiv = styled.div`
+    max-height: 50vh;
+    overflow: scroll;
+    margin-top; 12px;
+`;
+
+export const Hr = styled.hr`
+    opacity: 0.6;
 `;

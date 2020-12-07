@@ -6,8 +6,6 @@ export const Container = styled.header`
     height: 52px;
     background-color: var(--scale-black);
     ${verticalAlign};
-    position: fixed;
-    top: 0;
     z-index: 9999;
     padding: 24px;
     justify-content: space-evenly;
@@ -24,9 +22,8 @@ export const Personalise = styled.button`
 `;
 
 export const FlexContainer = styled.div`
-    position: fixed;
-    top: 52px;
     padding: 24px;
+    padding-bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;

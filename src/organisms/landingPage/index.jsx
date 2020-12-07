@@ -3,19 +3,15 @@ import {
     Container,
     TaskBoard,
     TaskSection,
-    StickyNoteSection,
     Circle,
-    PriorityCircle,
-    StickyPriority
 } from './styled';
-import { FlexWithVerticalAlign, Card } from '../../styles/common';
+import { FlexWithVerticalAlign } from '../../styles/common';
+import RenderStickyNotes from './RenderStickyNotes';
 
 const RightPane = () => {
     const state = useSelector(state => state);
-    const priorityLevels = ['High', 'Medium', 'Low']
     return (
         <Container className="sidepane_container">
-            <hr />
             <TaskBoard>
                 <TaskSection>
                     <FlexWithVerticalAlign>
@@ -35,28 +31,7 @@ const RightPane = () => {
                         <span>Done</span>
                     </FlexWithVerticalAlign>
                 </TaskSection>
-                <StickyNoteSection>
-                    <FlexWithVerticalAlign>
-                        <Circle>{state.stickyNotes.length}</Circle>
-                        <span>Sticky Notes</span>
-                    </FlexWithVerticalAlign>
-                    <StickyPriority>
-                        {priorityLevels.map(p => (
-                            <FlexWithVerticalAlign key={p}>
-                                <PriorityCircle priority={p} />
-                                <span>{p} priority</span>
-                            </FlexWithVerticalAlign>
-                        ))}
-                    </StickyPriority>
-                    <div>
-                        {state.stickyNotes.map(sticky => (
-                            <Card key={sticky.id}>
-                                <div>{sticky.priority}</div>
-                                <div>{sticky.text}</div>
-                            </Card>
-                        ))}
-                    </div>
-                </StickyNoteSection>
+                <RenderStickyNotes />
             </TaskBoard>
         </Container>
     )

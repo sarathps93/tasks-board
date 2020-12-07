@@ -79,4 +79,5 @@ export const Card = styled.div`
     margin: 6px 0;
     border: var(--border);
     border-radius: 12px;
+    position: relative;
 `;
