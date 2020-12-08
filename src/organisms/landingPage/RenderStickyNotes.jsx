@@ -10,7 +10,7 @@ import {
 } from './styled';
 import { FlexWithVerticalAlign } from '../../styles/common';
 import { requestStickyNoteModification, renderPortal } from '../../redux/actions';
-import { debounce } from '../../utils/appUtils';
+import CloseSVG from '../../assets/svgs/close.svg';
 
 const RenderStickyNotes = () => {
     const state = useSelector(state => state);
@@ -23,6 +23,14 @@ const RenderStickyNotes = () => {
             { component: 'sticky', userAction: 'update', id: e.target.id }
         ));
     }
+
+    const deleteStickyNote = (e) => {
+        e.stopPropagation();
+        dispatch(requestStickyNoteModification({
+            type: 'delete',
+            id: e.target.offsetParent.id
+        }))
+    };
 
     return (
         <StickyNoteSection>
@@ -41,10 +49,14 @@ const RenderStickyNotes = () => {
             <Hr />
             <ScrollableDiv>
                 {state.stickyNotes.map(sticky => (
-                    <StickyCards key={sticky.id} priority={sticky.priority} onClick={editStickyNote}>
-                        <div id={sticky.id}>
-                            {sticky.text}
-                        </div>
+                    <StickyCards
+                        key={sticky.id}
+                        id={sticky.id}
+                        priority={sticky.priority}
+                        onClick={editStickyNote}
+                    >
+                        {sticky.text}
+                        <img src={CloseSVG} alt="close" onClick={deleteStickyNote} />
                     </StickyCards>
                 ))}
             </ScrollableDiv>

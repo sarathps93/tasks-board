@@ -25,12 +25,6 @@ export const SubmitContainer = styled.div`
     padding: 18px
 `;
 
-export const PriorityDropdown = styled.select`
-    font: inherit;
-    border-radius: 12px;
-    padding: 2px 6px;
-    margin-left: 6px;
-`
 export const Submit = styled.span`
     position: absolute;
     transform: translate(0, -40px);

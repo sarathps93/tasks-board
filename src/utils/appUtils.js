@@ -25,4 +25,6 @@ export const debounce = (func, delay = 1000) => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => func.apply(null, args), delay);
     } 
-}  
+}
+
+export const stopImmediatePropagation = (e) => e.nativeEvent.stopImmediatePropagation();

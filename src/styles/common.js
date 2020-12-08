@@ -80,4 +80,40 @@ export const Card = styled.div`
     border: var(--border);
     border-radius: 12px;
     position: relative;
+    & img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 10px;
+        cursor: pointer;
+    }
+`;
+
+export const Submit = styled.button`
+    width: 100px;
+    border: var(--border);
+    background-color: ${props => props.disabled ? 'var(--border-color)' : props.color};
+    border-radius: 24px;
+    padding: 6px;
+    text-align: center;
+    color: ${props => !props.disabled && 'var(--white)'};
+    font: inherit;
+    outline: none;
+    cursor: ${props => !props.disabled && 'pointer'};
+    margin-right: 12px;
+`;
+
+export const Close = styled(StyledAnchor)`
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: ${props => !props.disabled ? 'var(--white)' : '#365C7D'};
+    border: none;
+    margin-top: 12px;
+    margin-left: 12px;
+    background-color: var(--white);
+    margin: 0;
+    font: inherit;
+    outline: none;
+    cursor: pointer;
 `;

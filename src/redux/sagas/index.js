@@ -1,4 +1,4 @@
-import { put, call, fork, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { get, set } from 'idb-keyval';
 
 import * as actions from '../actions';
@@ -51,7 +51,7 @@ export function* addUpdateStickyNotes(getState, { payload }) {
        if(type === 'add') {
            updatedStickies.push(stickyDetails);
        } else if(type === 'delete') {
-            const indexToRemove = updatedStickies.find(sticky => sticky.id === Number(id));
+            const indexToRemove = updatedStickies.findIndex(sticky => sticky.id === Number(id));
             if(indexToRemove > -1) {
                 updatedStickies.splice(indexToRemove, 1);
             }
@@ -59,6 +59,7 @@ export function* addUpdateStickyNotes(getState, { payload }) {
             const indexToUpdate = updatedStickies.findIndex(sticky => sticky.id === Number(id));
             if (indexToUpdate > -1) {
                 updatedStickies[indexToUpdate].text = text;
+                updatedStickies[indexToUpdate].priority = priority;
             }
        }
         yield set(constants.STICKY_NOTES, updatedStickies);

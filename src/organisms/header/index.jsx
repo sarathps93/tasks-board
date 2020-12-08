@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     TopSection,
@@ -15,7 +14,7 @@ import {
     Portal,
     PersonaliseForm,
 } from '../../molecules';
-import { PieChart, StickyNotes } from '../../molecules';
+import { PieChart, StickyNotes, Tasks } from '../../molecules';
 import { renderPortal as setRenderPortal, closePortal } from '../../redux/actions';
 
 const components = {
@@ -29,7 +28,7 @@ const components = {
     },
     tasks: {
         label: 'Add a task',
-        Component: StickyNotes
+        Component: Tasks
     },
 };
 

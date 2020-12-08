@@ -1,4 +1,3 @@
-import actionTypes from './actionTypes';
 import action from './actionTypes';
 
 export const getAllDetails = () => ({

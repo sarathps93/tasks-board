@@ -1,9 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { requestUpdateBasicDetails } from '../../redux/actions';
 
-import { Container, Submit, Close } from './styled';
-import { StyledInput, Label } from '../../styles/common';
+import {
+    StyledInput,
+    Label,
+    PortalContainer,
+    Submit,
+    Close
+} from '../../styles/common';
+import { stopImmediatePropagation } from '../../utils/appUtils';
 
 const Personalise = ({ closePortal }) => {
     const [details, setDetails] = useState({
@@ -11,8 +17,6 @@ const Personalise = ({ closePortal }) => {
         dashboardName: ''
     });
     const dispatch = useDispatch();
-
-    const stopImmediatePropagation = (e) => e.nativeEvent.stopImmediatePropagation();
     const shouldEnableSubmit = Object.keys(details).every(key => !!details[key]);
 
     const handleSubmit = (e) => {
@@ -28,16 +32,8 @@ const Personalise = ({ closePortal }) => {
         setDetails({ ...details, [e.target.id]: e.target.value })
     };
 
-    useEffect(() => {
-        (async () => {
-            // const name = await get(constants.NAME);
-            // const dashboardName = await get(constants.DASHBOARD_NAME);
-            // if(name && dashboardName) setDetails({ ...details, name, dashboardName });
-        })();
-    }, [])
-
     return (
-        <Container onClick={stopImmediatePropagation} onSubmit={handleSubmit} as="form">
+        <PortalContainer onClick={stopImmediatePropagation} onSubmit={handleSubmit} as="form">
             <Label htmlFor="name">
                 Your Name
                 <StyledInput
@@ -55,7 +51,6 @@ const Personalise = ({ closePortal }) => {
                 />
             </Label>
             <Submit
-                color="#365C7D"
                 disabled={!shouldEnableSubmit}
                 type="submit"
             >
@@ -67,7 +62,7 @@ const Personalise = ({ closePortal }) => {
             >
                 Close
             </Close>
-        </Container>
+        </PortalContainer>
     )
 };
 
