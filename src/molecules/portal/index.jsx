@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import { applyPortalStyles } from '../../utils/appUtils';
 
-const Portal = ({ children, setPortal }) => {
+const Portal = ({ children, closePortal }) => {
     const el = document.createElement('div');
 
     const preventScroll = (e) => e.preventDefault();
@@ -12,13 +12,13 @@ const Portal = ({ children, setPortal }) => {
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft; 
 
     const onScroll = () => window.scrollTo(scrollLeft, scrollTop);
-    const toggleOffPortal = () => setPortal(false);
+    const toggleOffPortal = () => closePortal();
 
     useEffect(() => {
         document.body.appendChild(el);
         applyPortalStyles(el);
         el.addEventListener('click', toggleOffPortal);
-        window.addEventListener('scroll', onScroll)
+        window.addEventListener('scroll', onScroll);
         return () => {
             el.removeEventListener('click', toggleOffPortal);
             document.body.removeChild(el);

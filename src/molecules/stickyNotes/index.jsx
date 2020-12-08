@@ -12,7 +12,7 @@ import {
 } from './styled';
 import contents from '../../contents';
 
-const StickyNotes = ({ setPortal }) => {
+const StickyNotes = ({ closePortal }) => {
     const [text, setText] = useState('');
     const [priority, setPriority] = useState('High');
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const StickyNotes = ({ setPortal }) => {
         e.preventDefault();
         if(text) {
             dispatch(requestStickyNoteModification({ type: 'add', text, priority }))
-            setPortal(false);
+            closePortal();
         }
     }
 

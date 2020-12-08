@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { verticalAlign } from '../../../styles/common';
 
+export const TopSection = styled.section`
+    max-height: 50vh;
+`;
+
 export const Container = styled.header`
     width: 100%;
     height: 52px;

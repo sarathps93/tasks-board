@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
+    TopSection,
     Container,
     Personalise,
     FlexContainer,
@@ -15,6 +16,7 @@ import {
     PersonaliseForm,
 } from '../../molecules';
 import { PieChart, StickyNotes } from '../../molecules';
+import { renderPortal as setRenderPortal, closePortal } from '../../redux/actions';
 
 const components = {
     personalise: {
@@ -32,14 +34,18 @@ const components = {
 };
 
 const Header = () => {
-    const [renderPortal, setRenderPortal] = useState(false);
+    const dispatch = useDispatch();
     const userDetails = useSelector(state => state.basicDetails);
+    const renderPortal = useSelector(state => state.renderPortal);
+
+    const _closePortal = () => dispatch(closePortal());
+
     const portalConditionalDisplay = (e) => {
-        setRenderPortal(e.target.id);
+        dispatch(setRenderPortal({ component: e.target.id, userAction: 'add' }));
     }
-    const PortalComponent = components[renderPortal]?.Component;
+    const PortalComponent = components[renderPortal?.component]?.Component;
     return (
-        <>
+        <TopSection>
             <Container>
                 {Object.keys(components).map((id)=> (
                     <Personalise id={id} key={id} onClick={portalConditionalDisplay}>
@@ -47,8 +53,8 @@ const Header = () => {
                     </Personalise>
                 ))}
                 {renderPortal && (
-                    <Portal setPortal={setRenderPortal}>
-                        <PortalComponent setPortal={setRenderPortal} />                       
+                    <Portal closePortal={_closePortal}>
+                        <PortalComponent closePortal={_closePortal} />                       
                     </Portal>
                 )}
             </Container>
@@ -76,7 +82,7 @@ const Header = () => {
                 </ChartContainer>
             </FlexContainer>
             <hr />     
-        </>
+        </TopSection>
     )
 };
 

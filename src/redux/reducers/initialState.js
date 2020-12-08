@@ -9,7 +9,8 @@ const initialState = {
         inProgress: [],
         done: []
     },
-    error: false
+    error: false,
+    renderPortal: false,
 }
 
 export default initialState;

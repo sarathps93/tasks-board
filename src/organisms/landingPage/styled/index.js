@@ -3,14 +3,12 @@ import { verticalAlign, Card } from '../../../styles/common';
 
 export const Container = styled.div`
     width: 100%;
-    max-height: 50vh;
+    height: 50vh;
 `;
 
 export const TaskBoard = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 500px;
-    margin-top: 24px;
     overflow: hidden;
 `;
 
@@ -69,10 +67,11 @@ export const StickyCards = styled(Card)`
     max-height: 200px;
     overflow: scroll;
     margin: 18px 0;
+    cursor: pointer;
 `;
 
 export const ScrollableDiv = styled.div`
-    max-height: 50vh;
+    max-height: 47vh;
     overflow: scroll;
     margin-top; 12px;
 `;

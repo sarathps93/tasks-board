@@ -56,6 +56,21 @@ const reducer = (state = initialState, action) => {
             return { ...state, error: action.payload.isError }
         }
 
+        case actionTypes.RENDER_PORTAL: {
+            return {
+                ...state,
+                renderPortal: {
+                    component: action.payload.component,
+                    userAction: action.payload.userAction,
+                    id: action.payload.id
+                }
+            }
+        }
+
+        case actionTypes.CLOSE_PORTAL: {
+            return { ...state, renderPortal: false }
+        }
+
         default: return state;
     }
 };

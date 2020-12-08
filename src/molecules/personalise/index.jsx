@@ -5,7 +5,7 @@ import { requestUpdateBasicDetails } from '../../redux/actions';
 import { Container, Submit, Close } from './styled';
 import { StyledInput, Label } from '../../styles/common';
 
-const Personalise = ({ setPortal }) => {
+const Personalise = ({ closePortal }) => {
     const [details, setDetails] = useState({
         name: '',
         dashboardName: ''
@@ -20,7 +20,7 @@ const Personalise = ({ setPortal }) => {
         if(shouldEnableSubmit) {
             const { name, dashboardName } = details;
             dispatch(requestUpdateBasicDetails({ name, dashboardName }));
-            setPortal(false);
+            closePortal();
         }
     };
 
@@ -63,7 +63,7 @@ const Personalise = ({ setPortal }) => {
             </Submit>
             <Close
                 as="button"
-                onClick={() => setPortal(false)}
+                onClick={closePortal}
             >
                 Close
             </Close>

@@ -72,3 +72,16 @@ export const handleError = ({ isError }) => ({
         isError
     }
 });
+
+export const renderPortal = ({ component, userAction = 'add', id }) => ({
+    type: action.RENDER_PORTAL,
+    payload: {
+        component,
+        userAction,
+        id
+    }
+});
+
+export const closePortal = () => ({
+    type: action.CLOSE_PORTAL
+})

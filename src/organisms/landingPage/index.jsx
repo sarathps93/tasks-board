@@ -8,10 +8,10 @@ import {
 import { FlexWithVerticalAlign } from '../../styles/common';
 import RenderStickyNotes from './RenderStickyNotes';
 
-const RightPane = () => {
+const LandingPage = () => {
     const state = useSelector(state => state);
     return (
-        <Container className="sidepane_container">
+        <Container>
             <TaskBoard>
                 <TaskSection>
                     <FlexWithVerticalAlign>
@@ -37,4 +37,4 @@ const RightPane = () => {
     )
 };
 
-export default RightPane;
+export default LandingPage;

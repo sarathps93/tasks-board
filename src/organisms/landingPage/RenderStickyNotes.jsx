@@ -9,7 +9,7 @@ import {
     Hr
 } from './styled';
 import { FlexWithVerticalAlign } from '../../styles/common';
-import { requestStickyNoteModification } from '../../redux/actions';
+import { requestStickyNoteModification, renderPortal } from '../../redux/actions';
 import { debounce } from '../../utils/appUtils';
 
 const RenderStickyNotes = () => {
@@ -18,19 +18,11 @@ const RenderStickyNotes = () => {
 
     const priorityLevels = ['High', 'Medium', 'Low'];
 
-    const handleEditableContent = (e) => {
-        console.log(e.target.innerHTML)
-        debounce(
-            dispatch(
-                requestStickyNoteModification({
-                    type: 'update',
-                    text: e.target.innerHTML,
-                    id: e.target.id
-                })
-            ),
-            3000
-        );
-    };
+    const editStickyNote = (e) => {
+        dispatch(renderPortal(
+            { component: 'sticky', userAction: 'update', id: e.target.id }
+        ));
+    }
 
     return (
         <StickyNoteSection>
@@ -49,12 +41,8 @@ const RenderStickyNotes = () => {
             <Hr />
             <ScrollableDiv>
                 {state.stickyNotes.map(sticky => (
-                    <StickyCards key={sticky.id} priority={sticky.priority}>
-                        <div
-                            contentEditable
-                            id={sticky.id}
-                            onInput={handleEditableContent}
-                        >
+                    <StickyCards key={sticky.id} priority={sticky.priority} onClick={editStickyNote}>
+                        <div id={sticky.id}>
                             {sticky.text}
                         </div>
                     </StickyCards>
