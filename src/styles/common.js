@@ -20,7 +20,11 @@ export const StyledInput = styled.input`
     outline: none;
 `;
 
-export const Label = styled.label``;
+export const Label = styled.label`
+    & strong {
+        font-weight: 600;
+    }
+`;
 
 export const TextArea = styled.textarea`
     display: block;
@@ -92,7 +96,7 @@ export const Card = styled.div`
 export const Submit = styled.button`
     width: 100px;
     border: var(--border);
-    background-color: ${props => props.disabled ? 'var(--border-color)' : props.color};
+    background-color: ${props => props.disabled ? 'var(--border-color)' : '#365C7D'};
     border-radius: 24px;
     padding: 6px;
     text-align: center;
@@ -107,7 +111,6 @@ export const Close = styled(StyledAnchor)`
     font-size: 12px;
     font-weight: bold;
     text-decoration: underline;
-    color: ${props => !props.disabled ? 'var(--white)' : '#365C7D'};
     border: none;
     margin-top: 12px;
     margin-left: 12px;
@@ -116,4 +119,14 @@ export const Close = styled(StyledAnchor)`
     font: inherit;
     outline: none;
     cursor: pointer;
+`;
+
+export const Hr = styled.hr`
+    opacity: 0.6;
+    margin: 14px 0;
+`;
+
+export const ScrollableDiv = styled.div`
+    max-height: 47vh;
+    overflow: scroll;
 `;

@@ -10,11 +10,14 @@ import {
     Warning,
     ChartContainer
 } from './styled';
+import { Hr } from '../../styles/common';
 import {
     Portal,
     PersonaliseForm,
+    PieChart,
+    StickyNotes,
+    Tasks
 } from '../../molecules';
-import { PieChart, StickyNotes, Tasks } from '../../molecules';
 import { renderPortal as setRenderPortal, closePortal } from '../../redux/actions';
 
 const components = {
@@ -80,7 +83,7 @@ const Header = () => {
                     <PieChart />
                 </ChartContainer>
             </FlexContainer>
-            <hr />     
+            <Hr />     
         </TopSection>
     )
 };

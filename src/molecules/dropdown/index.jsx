@@ -3,7 +3,7 @@ import { StyledSelect, StyledLabel } from './styled';
 const Dropdown = ({ label, value, setValue, className, contents }) => {
     return (
         <StyledLabel className={className}>
-            {label}
+            <span>{label}</span>
             <StyledSelect value={value} onChange={e => setValue(e.target.value)}>
                 {contents.map(option => ( 
                     <option key={option.label} value={option.label}>

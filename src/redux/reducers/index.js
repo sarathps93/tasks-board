@@ -22,34 +22,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, stickyNotes: action.payload }
         }
 
-        case actionTypes.ADD_TASK_ITEM: {
-            const _tasks = [...state.tasks];
-            const {
-                id,
-                status,
-                title,
-                text,
-                label
-            } = action.payload;
-            _tasks.push({ id, status, title, text, label });
-            return { ...state, tasks: _tasks }
-        }
-
-        case actionTypes.UPDATE_TASK_ITEM: {
-            const _tasks = [...state.tasks];
-            const idx = _tasks.findIndex(task => task.id === action.payload.id);
-            _tasks[idx].status = action.payload.status;
-            _tasks[idx].title = action.payload.title;
-            _tasks[idx].text = action.payload.text;
-            _tasks[idx].label = action.payload.label;
-            return { ...state, tasks: _tasks }
-        }
-
-        case actionTypes.DELETE_TASK_ITEM: {
-            const filteredTasks = state.stickyNotes.filter(task => {
-                return task.id !== action.payload.id;
-            });
-            return { ...state, tasks: filteredTasks }
+        case actionTypes.UPDATE_TASKS: {
+            return { ...state, tasks: action.payload }
         }
 
         case actionTypes.HANDLE_ERROR: {
@@ -62,7 +36,8 @@ const reducer = (state = initialState, action) => {
                 renderPortal: {
                     component: action.payload.component,
                     userAction: action.payload.userAction,
-                    id: action.payload.id
+                    id: action.payload.id,
+                    status: action.payload.status
                 }
             }
         }

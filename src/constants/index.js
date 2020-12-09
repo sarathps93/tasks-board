@@ -5,5 +5,18 @@ const constants = Object.freeze({
     TASKS: 'tasks'
 });
 
+export const statusIdMap = Object.freeze({
+    'To Do': 'todo',
+    'In Progress': 'inProgress',
+    Done: 'done'
+});
+
+export const idStatusMap = Object.freeze({
+    'todo': 'To Do',
+    'inProgress': 'In Progress',
+    done: 'Done'
+});
+
+
 export default constants;
 

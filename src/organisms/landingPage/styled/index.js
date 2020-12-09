@@ -70,12 +70,6 @@ export const StickyCards = styled(Card)`
     cursor: pointer;
 `;
 
-export const ScrollableDiv = styled.div`
-    max-height: 47vh;
-    overflow: scroll;
-    margin-top; 12px;
-`;
-
-export const Hr = styled.hr`
-    opacity: 0.6;
+export const TaskCards = styled(Card)`
+    cursor: pointer;
 `;

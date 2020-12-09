@@ -10,6 +10,7 @@ import {
     Close
 } from '../../styles/common';
 import { stopImmediatePropagation } from '../../utils/appUtils';
+import SubmitClose from '../submitClose';
 
 const Personalise = ({ closePortal }) => {
     const [details, setDetails] = useState({
@@ -35,33 +36,24 @@ const Personalise = ({ closePortal }) => {
     return (
         <PortalContainer onClick={stopImmediatePropagation} onSubmit={handleSubmit} as="form">
             <Label htmlFor="name">
-                Your Name
+                <strong>Your Name</strong>
                 <StyledInput
+                    autoComplete="off"
                     id="name"
                     value={details.name}
                     onChange={handleOnChange}
                 />
             </Label>
             <Label htmlFor="dashboard Name">
-                Dashboard Name
+                <strong>Dashboard Name</strong>
                 <StyledInput
+                    autoComplete="off"
                     id="dashboardName"
                     value={details.dashboardName}
                     onChange={handleOnChange}
                 />
             </Label>
-            <Submit
-                disabled={!shouldEnableSubmit}
-                type="submit"
-            >
-                Submit
-            </Submit>
-            <Close
-                as="button"
-                onClick={closePortal}
-            >
-                Close
-            </Close>
+            <SubmitClose isDisabled={!shouldEnableSubmit} onClose={closePortal} />
         </PortalContainer>
     )
 };

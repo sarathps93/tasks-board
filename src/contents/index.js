@@ -1,13 +1,13 @@
 const contents = {
     priority: [
-        { label: 'Low', color: 'yellow' },
-        { label: 'Medium', color: 'green' },
-        { label: 'High', color: 'red' }
+        { label: 'Low' },
+        { label: 'Medium' },
+        { label: 'High' }
     ],
     status: [
-        { label: 'To Do', color: 'yellow' },
-        { label: 'In Progress', color: 'green' },
-        { label: 'Done', color: 'red' }
+        { label: 'To Do', color: 'rgb(216, 156, 52)', id: 'todo' },
+        { label: 'In Progress', color: 'rgb(224, 210, 85)', id: 'inProgress' },
+        { label: 'Done', color: 'rgb(90, 191, 174)', id: 'done' }
     ]
 };
 

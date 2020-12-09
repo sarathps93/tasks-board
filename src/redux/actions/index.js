@@ -35,35 +35,15 @@ export const updateStickyNotes = (payload) => ({
     payload
 });
 
-
-export const addTaskItem = ({ id, status, title, text, label }) => ({
-    type: action.ADD_TASK_ITEM,
-    payload: {
-        id,
-        status,
-        title,
-        text,
-        label
-    }
+export const requestTaksModification = (payload) => ({
+    type: action.TASKS_MODIFICATION,
+    payload
 });
 
-export const updateTaskItem = ({ id, status, title, text, label }) => ({
-    type: action.ADD_TASK_ITEM,
-    payload: {
-        id,
-        status,
-        title,
-        text,
-        label
-    }
-});
-
-export const deleteTaskItem = ({ id }) => ({
-    type: action.DELETE_TASK_ITEM,
-    payload: {
-        id
-    }
-});
+export const updateTaks = (payload) => ({
+    type: action.UPDATE_TASKS,
+    payload
+})
 
 export const handleError = ({ isError }) => ({
     type: action.ERROR_OCCURRED,
@@ -72,12 +52,13 @@ export const handleError = ({ isError }) => ({
     }
 });
 
-export const renderPortal = ({ component, userAction = 'add', id }) => ({
+export const renderPortal = ({ component, userAction = 'add', id, status = 'todo' }) => ({
     type: action.RENDER_PORTAL,
     payload: {
         component,
         userAction,
-        id
+        id,
+        status
     }
 });
 

@@ -28,3 +28,6 @@ export const debounce = (func, delay = 1000) => {
 }
 
 export const stopImmediatePropagation = (e) => e.nativeEvent.stopImmediatePropagation();
+
+export const preventDefault = (e) => e.preventDefault();
+

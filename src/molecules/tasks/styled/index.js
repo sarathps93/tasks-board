@@ -22,4 +22,8 @@ export const DropDownContainer = styled.div`
 export const StyledDropdown = styled(Dropdown)`
     display: inline-block;
     color: inherit;
+    & span {
+        display: inline;
+        font-weight: 600;
+    }
 `;
