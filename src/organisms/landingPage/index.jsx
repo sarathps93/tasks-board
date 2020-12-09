@@ -6,27 +6,34 @@ import {
     TaskBoard,
     TaskSection,
     Circle,
-    TaskCards
+    TaskCards,
+    TaskColor,
+    PriorityCircle,
+    TaskTitle,
+    TaskLabel,
+    TaskTitleContainer,
+    TaskId
 } from './styled';
 import { FlexWithVerticalAlign, Hr, ScrollableDiv } from '../../styles/common';
 import RenderStickyNotes from './RenderStickyNotes';
 import contents from '../../contents';
-import { preventDefault } from '../../utils/appUtils';
+import { preventDefault, getTaskId } from '../../utils/appUtils';
+import CloseSVG from '../../assets/svgs/close.svg';
 
 const LandingPage = () => {
     const state = useSelector(state => state);
     const dispatch = useDispatch();
 
-    const editTask = (e, status) => {
+    const editTask = (id, status) => {
         dispatch(renderPortal(
-            { component: 'tasks', userAction: 'update', id: e.target.id, status }
+            { component: 'tasks', userAction: 'update', id, status }
         ));
     }
 
-    const onDropEvent = (e) => {
+    const onDropEvent = (e, sectionId) => {
        const taskId = +e.dataTransfer.getData('taskId');
        const prevStatus = e.dataTransfer.getData('prevStatus');
-       const currentStatus = e.target.id;
+       const currentStatus = sectionId ?? e.target.id;
        const taskDetails = state.tasks[prevStatus].find(task => task.id === taskId);
        dispatch(requestTaksModification({
            ...taskDetails,
@@ -39,6 +46,21 @@ const LandingPage = () => {
         e.dataTransfer.setData('taskId', e.target.id);
         e.dataTransfer.setData('prevStatus', prevStatus);
     };
+
+    const scrollableDivDrop = (e, sectionId) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onDropEvent(e, sectionId)
+    }
+
+    const deleteTask = (e, id, status) => {
+        e.stopPropagation();
+        dispatch(requestTaksModification({
+            id,
+            type: 'delete',
+            status
+        }))
+    }
 
     return (
         <Container>
@@ -55,18 +77,33 @@ const LandingPage = () => {
                             <span>{section.label}</span>
                         </FlexWithVerticalAlign>
                         <Hr />
-                        {state.tasks[section.id].map(task => (
-                            <ScrollableDiv key={task.id}>
+                        <ScrollableDiv
+                            onDragOver={preventDefault}
+                            onDrop={(e) => scrollableDivDrop(e, section.id)}
+                        >
+                            {state.tasks[section.id].map(task => (    
                                 <TaskCards
+                                    key={task.id}
                                     id={task.id}
-                                    onClick={(e) => editTask(e, section.label)}
+                                    onClick={() => editTask(task.id, section.label)}
                                     draggable
                                     onDragStart={(e) => onDragStart(e, section.id)}
-                                >
-                                    {task.title}
+                                >   
+                                    <img
+                                        src={CloseSVG}
+                                        alt="close"
+                                        onClick={(e) => deleteTask(e, task.id, section.id)}
+                                    />
+                                    <TaskColor section={section.id} />
+                                    <TaskId>#{getTaskId(task.id)}</TaskId>
+                                    <TaskTitleContainer>
+                                        <PriorityCircle priority={task.priority} />
+                                        <TaskTitle>{task.title}</TaskTitle>
+                                    </TaskTitleContainer>
+                                    <TaskLabel>{task.label}</TaskLabel>
                                 </TaskCards>
-                            </ScrollableDiv>
-                        ))}
+                            ))}
+                        </ScrollableDiv>
                     </TaskSection>
                 ))}
                 <RenderStickyNotes />

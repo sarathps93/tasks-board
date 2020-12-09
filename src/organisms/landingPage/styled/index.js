@@ -3,13 +3,14 @@ import { verticalAlign, Card } from '../../../styles/common';
 
 export const Container = styled.div`
     width: 100%;
-    height: 50vh;
 `;
 
 export const TaskBoard = styled.div`
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
+    @media(max-width: 768px) {
+        width: 1000px;
+    }
 `;
 
 export const TaskSection = styled.section`
@@ -64,7 +65,9 @@ export const StickyCards = styled(Card)`
     background-color: ${props => props.priority && `var(--${props.priority.toLowerCase()}-priority)`};
     color: ${props => props.priority === 'High' && 'white'};
     min-height: 80px;
-    max-height: 200px;
+    max-height: 140px;
+    max-width: 300px;
+    word-break: break-all;
     overflow: scroll;
     margin: 18px 0;
     cursor: pointer;
@@ -72,4 +75,49 @@ export const StickyCards = styled(Card)`
 
 export const TaskCards = styled(Card)`
     cursor: pointer;
+    word-break: break-all;
+`;
+
+export const TaskColor = styled.div`
+    background-color: ${props => `var(--task-${props.section})`};
+    height: 3px;
+    position: absolute;
+    top: 26px;
+    left: 0;
+    width: 100%;
+`;
+
+export const TaskTitleContainer = styled.div`
+    position: relative;
+    & div {
+        position: absolute;
+        top: 6px;
+        left: 0;
+    }
+    & span {
+        margin-left: 18px;
+    }
+`;
+
+export const TaskTitle = styled.span`
+    font-weight: 600;
+    color: #0366d6;
+    margin: 6px 0;
+`;
+
+export const TaskLabel = styled.div`
+    background-color: #0366d6;
+    max-width: fit-content;
+    padding: 0 6px;
+    color: white;
+    font-size: 12px;
+    border-radius: 12px;
+    margin: 6px 0;
+`;
+
+export const TaskId = styled.div`
+    color: #586069;
+    font-size: 14px;
+    margin-bottom: 6px;
+    margin-top: 18px;
 `;

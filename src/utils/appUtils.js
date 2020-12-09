@@ -31,3 +31,5 @@ export const stopImmediatePropagation = (e) => e.nativeEvent.stopImmediatePropag
 
 export const preventDefault = (e) => e.preventDefault();
 
+export const getTaskId = (id) => String(id).padStart(3, '0');
+

@@ -127,6 +127,6 @@ export const Hr = styled.hr`
 `;
 
 export const ScrollableDiv = styled.div`
-    max-height: 47vh;
+    height: 45vh;
     overflow: scroll;
 `;

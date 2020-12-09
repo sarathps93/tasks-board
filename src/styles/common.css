@@ -11,6 +11,9 @@ html {
     --high-priority: #eb5a46;
     --medium-priority: #ff9f1a;
     --low-priority: #f2d600;
+    --task-todo: rgb(216, 156, 52);
+    --task-inProgress: rgb(224, 210, 85);
+    --task-done: rgb(90, 191, 174);
 }
 
 * {

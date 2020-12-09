@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { verticalAlign } from '../../../styles/common';
 
 export const TopSection = styled.section`
-    max-height: 50vh;
 `;
 
 export const Container = styled.header`
@@ -32,10 +31,24 @@ export const FlexContainer = styled.div`
     display: flex;
     justify-content: space-between;
     z-index: 9999;
+    @media(max-width: 767px) {
+        display: block
+    }
 `;
 
 export const MessageContainer = styled.div`
-
+    @media(max-width: 1230px) {
+        overflow: scroll;
+        width: 80%
+    }
+    @media(max-width: 930px) {
+        overflow: scroll;
+        width: 58%
+    }
+    @media(max-width: 767px) {
+        width: 100%;
+        margin: auto;
+    }
 `;
 
 export const WelcomeMessage = styled.div`
@@ -51,10 +64,17 @@ export const Warning = styled.div`
     margin: 12px 0;
     padding: 12px;
     background-color: var(--warning);
+    @media(max-width: 1230px) {
+        height: 160px;
+        overflow: scroll;
+    }
 `;
 
 
 export const ChartContainer = styled.div`
     height: 200px;
     width: 50%;
+    @media(max-width: 767px) {
+        width: 100%
+    }
 `;
