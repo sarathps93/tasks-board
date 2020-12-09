@@ -6,8 +6,6 @@ import {
     StyledInput,
     Label,
     PortalContainer,
-    Submit,
-    Close
 } from '../../styles/common';
 import { stopImmediatePropagation } from '../../utils/appUtils';
 import SubmitClose from '../submitClose';

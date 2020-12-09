@@ -82,7 +82,7 @@ export const TaskColor = styled.div`
     background-color: ${props => `var(--task-${props.section})`};
     height: 3px;
     position: absolute;
-    top: 26px;
+    bottom: 12px;
     left: 0;
     width: 100%;
 `;
@@ -110,14 +110,14 @@ export const TaskLabel = styled.div`
     max-width: fit-content;
     padding: 0 6px;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 600;
     border-radius: 12px;
-    margin: 6px 0;
+    margin: 12px 0;
 `;
 
 export const TaskId = styled.div`
     color: #586069;
     font-size: 14px;
     margin-bottom: 6px;
-    margin-top: 18px;
 `;
