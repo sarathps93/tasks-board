@@ -10,7 +10,6 @@ export const Container = styled.header`
     background-color: var(--scale-black);
     ${verticalAlign};
     z-index: 9999;
-    padding: 24px;
     justify-content: space-evenly;
     z-index: 9999;
 `;
@@ -64,10 +63,6 @@ export const Warning = styled.div`
     margin: 12px 0;
     padding: 12px;
     background-color: var(--warning);
-    @media(max-width: 1230px) {
-        height: 160px;
-        overflow: scroll;
-    }
 `;
 
 
@@ -76,5 +71,11 @@ export const ChartContainer = styled.div`
     width: 50%;
     @media(max-width: 767px) {
         width: 100%
+    }
+    @media(min-width: 768px) {
+        transform: translate(0, 50px);
+    }
+    @media(min-width: 1000px) {
+        transform: translate(0, 10px);
     }
 `;

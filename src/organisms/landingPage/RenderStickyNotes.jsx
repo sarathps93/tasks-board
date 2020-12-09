@@ -16,6 +16,7 @@ const RenderStickyNotes = () => {
     const priorityLevels = ['High', 'Medium', 'Low'];
 
     const editStickyNote = (e) => {
+        window.scrollTo(0, 0);
         dispatch(renderPortal(
             { component: 'sticky', userAction: 'update', id: e.target.id }
         ));

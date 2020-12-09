@@ -25,6 +25,7 @@ const LandingPage = () => {
     const dispatch = useDispatch();
 
     const editTask = (id, status) => {
+        window.scrollTo(0, 0);
         dispatch(renderPortal(
             { component: 'tasks', userAction: 'update', id, status }
         ));

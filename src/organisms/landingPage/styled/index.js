@@ -8,8 +8,10 @@ export const Container = styled.div`
 export const TaskBoard = styled.div`
     display: flex;
     justify-content: space-between;
-    @media(max-width: 768px) {
-        width: 1000px;
+    @media(max-width: 767px) {
+        max-width: 100%;
+        overflow: scroll;
+        display: block;
     }
 `;
 
@@ -20,6 +22,10 @@ export const TaskSection = styled.section`
     padding: 12px;
     border-radius: 12px;
     box-shadow: 0px 0px 5px grey;
+    @media(max-width: 767px) {
+        width: 100%;
+        margin-bottom: 24px;
+    }
 `;
 
 export const StickyNoteSection = styled(TaskSection)`
