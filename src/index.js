@@ -8,7 +8,7 @@ import './styles/common.css';
 import App from './App';
 import reducer from './redux/reducers';
 import rootSaga from './redux/sagas';
-import * as serviceWorker from './service-worker';
+import * as serviceWorker from './serviceWorkerRegistration';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
